@@ -1,4 +1,4 @@
-class API::v1::ReactionsController < ApplicationController
+class Api::V1::ReactionsController < ApplicationController
   before_action, only: [:show, :update, :destroy]
 
   def index
@@ -13,6 +13,7 @@ class API::v1::ReactionsController < ApplicationController
       render json: @reaction
     else
       render json: {status: "error", code: 400, message: @reaction.errors.full_messages[0]}
+    end
   end
 
   def show

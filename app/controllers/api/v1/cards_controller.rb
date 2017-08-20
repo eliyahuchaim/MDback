@@ -1,4 +1,4 @@
-class API::v1::CardsController < ApplicationController
+class Api::V1::CardsController < ApplicationController
 
   def index
     render json: Card.all
@@ -10,6 +10,7 @@ class API::v1::CardsController < ApplicationController
       render json: @card
     else
       render json: {status: "error", code: 400, message: @card.errors.full_messages[0]}
+    end
   end
 
   def show

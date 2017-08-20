@@ -1,4 +1,4 @@
-class API::v1::PostsController < ApplicationController
+class Api::V1::PostsController < ApplicationController
 
 
   def index
@@ -11,6 +11,7 @@ class API::v1::PostsController < ApplicationController
       render json: @post
     else
       render json: {status: "error", code: 400, message: @post.errors.full_messages[0]}
+    end
   end
 
   def show

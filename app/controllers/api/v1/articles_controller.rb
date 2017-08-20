@@ -1,4 +1,4 @@
-class API::v1::ArticlesController < ApplicationController
+class Api::V1::ArticlesController < ApplicationController
 
   before_action :set_instance, only: [:show, :destroy, :update]
 
@@ -14,6 +14,7 @@ class API::v1::ArticlesController < ApplicationController
         render json: @article
       else
         render json: {status: "error", code: 400, message: @article.errors.full_messages[0]}
+      end
   end
 
   def show
@@ -22,7 +23,7 @@ class API::v1::ArticlesController < ApplicationController
 
   def destroy
     @article.destroy
-    redirect_to index
+    render json: Article.all
   end
 
   def update

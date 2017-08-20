@@ -1,4 +1,4 @@
-class API::v1::UsersController < ApplicationController
+class Api::V1::UsersController < ApplicationController
 
   def index
     @users = User.all
@@ -11,6 +11,7 @@ class API::v1::UsersController < ApplicationController
         render json: @user
       else
         render json: {status: "User was not created :,,(", code: 400, message: @user.errors.full_messages[0]}
+      end
   end
 
   def update
@@ -21,6 +22,8 @@ class API::v1::UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    cards = @user.cards
+    render json: {user: @user, cards: cards}
   end
 
   private
