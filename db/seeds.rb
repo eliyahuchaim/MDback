@@ -5,3 +5,10 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+
+User.create(name: 'Paul', username: 'paulyarabe', password: "coco", password_confirmation: "coco")
+Article.create(title: "Trump insults North Korea", content: "Trump was all like man f North Korea")
+Post.create(article_id: 1, user_id: 1)
+Reaction.create(point_1: "hi", point_2: "steak", point_3: "beeef", content: "chicken wings", article_id: 1, user_id: 1)
+Card.create(reaction_id: 1)

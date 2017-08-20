@@ -1,4 +1,4 @@
 class Article < ApplicationRecord
-  has_many :posts
-  has_many :users, through: :posts
+  has_one :post
+  has_many :reactions
 end
