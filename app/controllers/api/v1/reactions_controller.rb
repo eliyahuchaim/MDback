@@ -1,5 +1,5 @@
 class Api::V1::ReactionsController < ApplicationController
-  before_action, only: [:show, :update, :destroy]
+  before_action :set_instance, only: [:show, :update, :destroy]
 
   def index
     @reactions = Reaction.all
@@ -8,7 +8,9 @@ class Api::V1::ReactionsController < ApplicationController
 
 
   def create
-    @reaction = Reaction.new(reaction_params)
+    par = reaction_params
+    par["user_id"] = current_user.id
+    @reaction = Reaction.new(par)
     if @reaction.save
       render json: @reaction
     else
