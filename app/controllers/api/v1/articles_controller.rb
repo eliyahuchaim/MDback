@@ -1,16 +1,22 @@
 class Api::V1::ArticlesController < ApplicationController
-
+  skip_before_action :authorized, only: [:index, :article_reactions, :show]
   before_action :set_instance, only: [:show, :destroy, :update]
+
 
   def index
     @articles = Article.all
     render json: @articles
   end
 
+  def article_reactions
+    # byebug
+    @article = Article.find(params[:id])
+    @reactions = @article.reactions
+    render json: {article: @article, reactions: @reactions}
+  end
 
   def create
-    @article = Article.new(article_params)
-      if @article.save
+    if @article = Article.find_or_create_by(article_params)
         render json: @article
       else
         render json: {status: "error", code: 400, message: @article.errors.full_messages[0]}
