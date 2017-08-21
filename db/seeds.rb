@@ -8,6 +8,8 @@
 
 
 User.create(name: 'Paul', username: 'paulyarabe', password: "coco", password_confirmation: "coco")
+User.create(name: 'thomas', username: 'cheng', password: "password", password_confirmation: "password")
+User.create(name: 'eli', username: 'elisings', password: "hi", password_confirmation: "hi")
 Article.create(title: "Trump insults North Korea", content: "Trump was all like man f North Korea")
 Post.create(article_id: 1, user_id: 1)
 Reaction.create(point_1: "hi", point_2: "steak", point_3: "beeef", content: "chicken wings", article_id: 1, user_id: 1)

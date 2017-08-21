@@ -28,6 +28,7 @@ gem 'byebug'
 gem 'rack-cors'
 gem 'better_errors'
 gem 'binding_of_caller'
+gem 'jwt'
 
 
 
