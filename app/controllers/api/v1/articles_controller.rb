@@ -4,7 +4,8 @@ class Api::V1::ArticlesController < ApplicationController
 
 
   def index
-    @articles = Article.all
+    @articles = Article.all.order("RANDOM()").limit(8)
+    # @articles = Article.all
     render json: @articles
   end
 
@@ -40,7 +41,7 @@ class Api::V1::ArticlesController < ApplicationController
 
   private
     def article_params
-      params.require(:article).permit(:title, :content, :image)
+      params.require(:article).permit(:title, :content, :image, :url)
     end
 
     def set_instance
