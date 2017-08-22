@@ -16,11 +16,25 @@ class Api::V1::ArticlesController < ApplicationController
   end
 
   def create
-    if @article = Article.find_or_create_by(article_params)
-        render json: @article
-      else
-        render json: {status: "error", code: 400, message: @article.errors.full_messages[0]}
+    @articles = []
+    articles_params.each do |article_params|
+      if @article = Article.find_or_create_by(article_params)
+        @post = Post.find_or_create_by(article_id: @article.id, user_id: current_user.id)
+        @articles << @article
       end
+    end #articles_params each
+    byebug
+    if @articles.length > 0
+      render json: @articles
+    else
+      render json: {message: "you crazy"}
+    end
+
+    # if @article = Article.find_or_create_by(article_params)
+    #   render json: @article
+    # else
+    #   render json: {status: "error", code: 400, message: @article.errors.full_messages[0]}
+    # end #if article found
   end
 
   def show
@@ -39,8 +53,8 @@ class Api::V1::ArticlesController < ApplicationController
 
 
   private
-    def article_params
-      params.require(:article).permit(:title, :content, :image)
+    def articles_params
+      params.require(:articles).each{ |article| article.permit! }
     end
 
     def set_instance
