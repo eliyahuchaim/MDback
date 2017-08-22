@@ -24,7 +24,6 @@ class Api::V1::ArticlesController < ApplicationController
         @articles << @article
       end
     end #articles_params each
-    byebug
     if @articles.length > 0
       render json: @articles
     else
