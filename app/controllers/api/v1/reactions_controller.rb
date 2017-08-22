@@ -1,5 +1,6 @@
 class Api::V1::ReactionsController < ApplicationController
   before_action :set_instance, only: [:show, :update, :destroy]
+  skip_before_action :authorized, only: [:update]
 
   def index
     @reactions = Reaction.all
@@ -23,7 +24,12 @@ class Api::V1::ReactionsController < ApplicationController
   end
 
   def update
-    @reaction.update(reaction_params)
+    # byebug
+    if params["reaction"]["initial_score"] === "true"
+      @reaction.increment!(:initial_score, 1)
+    else
+      @reaction.update(reaction_params)
+    end
     render json: @reaction
   end
 
@@ -40,7 +46,7 @@ class Api::V1::ReactionsController < ApplicationController
   end
 
   def reaction_params
-    params.require(:reaction).permit(:point_1, :point_2, :point_3, :content, :article_id, :user_id)
+    params.require(:reaction).permit(:point_1, :point_2, :point_3, :content, :article_id, :user_id, :initial_score, :final_score)
   end
 
 end
