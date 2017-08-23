@@ -1,10 +1,10 @@
 class Api::V1::ArticlesController < ApplicationController
-  skip_before_action :authorized, only: [:index, :article_reactions, :show]
+  skip_before_action :authorized, only: [:index, :article_reactions, :show, :update]
   before_action :set_instance, only: [:show, :destroy, :update]
 
 
   def index
-    @articles = Article.all.order("RANDOM()").limit(8)
+    @articles = Article.all.order(view_count: :desc).limit(8)
     # @articles = Article.all
     render json: @articles
   end
@@ -47,7 +47,8 @@ class Api::V1::ArticlesController < ApplicationController
   end
 
   def update
-    @article.update(article_params)
+    @article.increment!(:view_count, 1)
+    @article.save
     render json: @article
   end
 
