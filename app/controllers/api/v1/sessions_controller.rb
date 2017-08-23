@@ -6,7 +6,7 @@ class Api::V1::SessionsController < ApplicationController
     if @user && @user.authenticate(params[:password])
       payload = {user_id: @user.id}
       token = issue_token(payload)
-      render json: {not_jwt: token}
+      render json: {not_jwt: token, user_id: @user.id}
     else
       render json: {message: "You fucked up boi"}
     end
