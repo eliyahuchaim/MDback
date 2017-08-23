@@ -24,7 +24,6 @@ class Api::V1::ReactionsController < ApplicationController
   end
 
   def update
-    # byebug
     if params["reaction"]["initial_score"] === "true"
       @reaction.increment!(:initial_score, 1)
     else
