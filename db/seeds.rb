@@ -12,5 +12,11 @@ User.create(name: 'Thomas Cheung', username: 'cheung', password: "password", pas
 User.create(name: 'Eli Goldstein', username: 'elisings', password: "hi", password_confirmation: "hi")
 Article.create(title: "Trump threatens North Korea", content: "Is anyone going to make significant progress in resolving the issues in North Korea?")
 Post.create(article_id: 1, user_id: 1)
+
+Reaction.create(point_1: "hi", point_2: "steak", point_3: "beeef", content: "chicken wings", article_id: 1, user_id: 2)
+Reaction.create(point_1: "hi", point_2: "steak", point_3: "beeef", content: "chicken wings", article_id: 1, user_id: 3)
+Reaction.create(point_1: "hi", point_2: "steak", point_3: "beeef", content: "chicken wings", article_id: 1, user_id: 3)
+Reaction.create(point_1: "hi", point_2: "steak", point_3: "beeef", content: "chicken wings", article_id: 1, user_id: 1)
 Reaction.create(point_1: "This is a problem", point_2: "For example, consider this point.", point_3: "Following this, we should consider the following options:", content: "Mmm. KFC chicken wings are the truth!  I totally recommend going to Popeyes or KFC, ordering a bucket of fried chicken, get some mashed potatoes and macaroni, and go down on it with your friends.  Great!", article_id: 1, user_id: 1)
+
 Card.create(reaction_id: 1)

@@ -10,9 +10,9 @@ class Api::V1::ArticlesController < ApplicationController
   end
 
   def article_reactions
-    # byebug
     @article = Article.find(params[:id])
     @reactions = @article.reactions
+  
     render json: {article: @article, reactions: @reactions}
   end
 
