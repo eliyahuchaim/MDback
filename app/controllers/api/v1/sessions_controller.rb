@@ -12,8 +12,8 @@ class Api::V1::SessionsController < ApplicationController
     end
   end
 
-  # def destroy
-  #
-  # end
+  def user_id
+    !!logged_in? ? (render json: {user_id: current_user.id}) : (render json: {user_id: ""})
+  end
 
 end
