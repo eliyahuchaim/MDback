@@ -6,14 +6,14 @@ class Api::V1::ArticlesController < ApplicationController
   def index
     @articles = Article.all.order(view_count: :desc).limit(8)
     # @articles = Article.all
-    render json: @articles
+    render json: @articles.to_json(:include => {:reactions => {:include => {:user => {:only => :name}}}})
   end
 
   def article_reactions
     @article = Article.find(params[:id])
-    @reactions = @article.reactions
-  
-    render json: {article: @article, reactions: @reactions}
+    @reactions = @article.reactions.to_json(:include => {:user => {:only => :name}})
+    render json: @article.to_json(:include => {:reactions => {:include => {:user => {:only => :name}}}})
+    # render json: {article: @article, reactions: @reactions}
   end
 
   def create
